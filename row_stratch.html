@@ -1,0 +1,34 @@
+<!-- 
+    <tr>
+    <td class="ee-name"></td>
+    <td class="ee-role"></td>
+    <td class="ee-start-date"></td>
+    <td class="ee-months-worked"></td>
+    <td class="ee-monthly-rate"></td>
+    <td class="ee-total-billed"></td>
+</tr>
+ -->
+ <script>
+function newEeRowHTML(nameVar, roleVar, startDateVar, monthlyRateVar) {
+    var rightNow = new Date();
+   // var monthsWorkedVar = current datatime - startdataetime;
+    var totalBilledVar = monthlyRateVar * monthsWorkedVar;
+
+
+    line01 = '<tr>'
+    line02 = '<td class="ee-name">'+nameVar+'</td>'
+    line03 = '<td class="ee-role">'+roleVar+'</td>'
+    line04 = '<td class="ee-start-date">'+startDateVar+'</td>'
+    line05 = '<td class="ee-months-worked">'+monthsWorkedVar+'</td>'
+    line06 = '<td class="ee-monthly-rate">'+monthlyRateVar+'</td>'
+    line07 = '<td class="ee-total-billed">'+totalBilledVar+'</td>'
+    line08 = '</tr>'
+    return rowDataHTML = line01+line02+line03+line04+line05+line06+line07+line08;
+}
+
+
+$(BUTTONANEM).on("click", function() {
+    $("#info-table").append(rowDataHTML)
+});
+
+</script>
