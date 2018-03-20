@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Employee Tracker</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -46,24 +48,79 @@
                             <input class="form-control" id="name-input" type="text">
                           </div>
                           <div class="form-group">
-                            <label for="email-input">Role</label>
-                            <input class="form-control" id="email-input" type="email">
+                            <label for="role-input">Role</label>
+                            <input class="form-control" id="role-input" type="text">
                           </div>
                           <div class="form-group">
-                            <label for="age-input">Start Date</label>
-                            <input class="form-control" id="age-input" type="text">
+                            <label for="start-input">Start Date</label>
+                            <input class="form-control" id="start-input" type="number">
                           </div>
                           <div class="form-group">
-                            <label for="comment-input">Monthly Rate</label>
-                            <input class="form-control" id="comment-input" type="text">
+                            <label for="monthly-input">Monthly Rate</label>
+                            <input class="form-control" id="monthly-input" type="number">
                           </div>
-                          <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+                          <button class="submitted" id="add-user" type="submit">Submit</button>
                         </form>
                       </div>
                     </div>
                   </div>
 
 </div>  
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<!-- Script -->
+<script>
+
+// ========================================== START CODING BELOW!!
+
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBOBt3LJw4JT-20Q8jxGeTd3S47Blg-qow",
+        authDomain: "classpro-280ac.firebaseapp.com",
+        databaseURL: "https://classpro-280ac.firebaseio.com",
+        projectId: "classpro-280ac",
+        storageBucket: "",
+        messagingSenderId: "344302025314"
+      };
+
+      firebase.initializeApp(config);
+
+      var dataRef = firebase.database();
+
+      // Initial Values
+      var Name = "";
+      var Role = "";
+      var StartDate = "";
+      var Monthly = "";
+
+      $("#add-user").on("click", function(event) {
+      event.preventDefault();
+
+      name = $("#name-input").val().trim();
+      role = $("#role-input").val().trim();
+      StartDate = $("#start-input").val().trim();
+      Monthly = $("#monthly-input").val().trim();
+
+      dataRef.ref().push({
+
+      name: name,
+      role: role,
+      StartDate: Startdate,
+      Monthly: Monthly,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+          });
+      });
+
+
+
+
+
+
+
+</script>
+
+
 
 </body>
 </html>
