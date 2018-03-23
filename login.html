@@ -37,6 +37,9 @@
 </head>
 <body>
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div id="greeting-user">Please Sign In</div>
+    <a href="#" onclick="signOut();">Sign out</a>
+
     <script>
         var profile = googleUser.getBasicProfile();
         console.log("profile "+profile)
@@ -44,8 +47,8 @@
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        document.getElementById("greeting-user").innerHTML = "Welcome Back, "+profile.getName();
       </script>
-    <a href="#" onclick="signOut();">Sign out</a>
     
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
