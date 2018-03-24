@@ -25,7 +25,7 @@ function initialize() {
   var request = {
       location: fitler,
       radius: '1500',
-      type: ['library']
+      query: 'public library'
   };
 
   // console.log(request)
@@ -41,7 +41,7 @@ function initialize() {
   service = new google.maps.places.PlacesService(map);
   console.log("service is \n"+service)
   
-  service.nearbySearch(request, callback);
+  service.textSearch(request, callback);
 }
 
 
