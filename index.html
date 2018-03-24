@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Books List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+
+</head>
+
+<body>
+
+    <div id="book-box">
+    <h3>Children's Books</h3>
+    </div>
+
+    <div id="youngadult-books">
+    <h3>Young Adult Books</h3>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var lccnResults = [];
+
+            var lccnChildren = ['2005002160', '90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397'];
+            var YA = ['2014021346', '2016950333', '2010277664', '2016058582', '2015026310', '2017297201', '2013013810', '2017019240', '2005005540', '2016003280', '2009009293', '2017000922', '2011378944', '2011036317', '2017943585', '2017021616', '2017945039']
+            function fetchWithLCCN(lccnList, bookDiv) {
+
+            
+            for (var i = 0; i < lccnList.length; i++) {
+                var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyBEd3FJa5kNMhvL2CUQrltQmvo1aKUWlcA";
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    if (response.totalItems > 0) {
+                        var book = response.items[0];
+                        console.log(book);
+                        var div = $('<div>');
+                        div.append(book.volumeInfo.title); 
+                        var author = $("<div>")
+                        author.text(book.volumeInfo.authors);
+                        div.append(author);
+                        var image = $("<img>");
+                        image.attr("src", book.volumeInfo.imageLinks.thumbnail);
+                        div.append(image);
+                        $(bookDiv).append(div);
+                    }
+                    // var item = response.items;
+                    // lccnResults.push(item);
+                    // console.log(item);
+                    //console.log(item[i].volumeInfo.authors[0]);
+                    // var childrenBookList = $("<div>");
+                    // var photoDiv = $("<img>");
+                    // photoDiv.attr("src", item.imageLinks);
+                    // (childrenBookList).append(photoDiv);
+                    // $("#book-box").append(childrenBookList);
+                    // console.log(lccnResults);             
+
+                });
+            }
+            }
+        fetchWithLCCN(lccnChildren, "#book-box");
+        fetchWithLCCN(YA, "#youngadult-books");
+
+        });
+            // var lccnChildren = ['2005002160', '90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397'];
+            // var ajaxRequests = lccnChildren.map(function (lccn) {
+            //     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccn + "&key=AIzaSyBEd3FJa5kNMhvL2CUQrltQmvo1aKUWlcA";
+            //     return $.ajax({
+            //         url: queryURL,
+            //         method: "GET"
+            //     });
+            // });
+
+            // $.when.apply($, ajaxRequests).then(function (results, results1) {
+            //     console.log(results);
+            //     console.log(results1);
+            // });
+       
+
+
+// function start() {
+//   // 2. Initialize the JavaScript client library.
+//   var lccnChildren = ['2005002160','90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501','2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397'];
+//   gapi.client.init({
+//     'apiKey': 'YOUR_API_KEY',
+//   }).then(function() {
+//     // 3. Initialize and make the API request.
+//     return gapi.client.request({
+//       'path': "https://www.googleapis.com/books/v1/volumes?q=" + 2005002160,
+//     })
+//   }).then(function(response) {
+//     console.log(response.items);
+//   }, function(reason) {
+//     console.log('Error: ' + reason.result.error.message);
+//   });
+// };
+// // 1. Load the JavaScript client library.
+// gapi.load('client', start);
+    </script>
+
+
+</body>
+
+</html>
