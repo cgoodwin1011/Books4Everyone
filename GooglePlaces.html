@@ -1,0 +1,83 @@
+<head>
+
+    <style>
+        #map {
+            margin: 100px;
+            width: 400px;
+            height: 400px;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<html>
+
+<body>
+    <div id="map"></div>
+</body>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTrLjTdz7FcMXK268u0JLkR_KybHh8GJk&sensor-true&libraries=places"></script>
+
+<script>
+    var map;
+    var service;
+    var infowindow;
+
+    function initialize() {
+        var fitler = new google.maps.LatLng(39.947321, -75.177745);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: fitler,
+            zoom: 15
+        });
+
+        var request = {
+            location: fitler,
+            radius: '500',
+            query: 'public library'
+        };
+
+        console.log(request)
+
+        var marker = new google.maps.Marker({
+            position: fitler,
+            map: map,
+            title: 'Hello World!'
+        });
+
+
+        service = new google.maps.places.PlacesService(map);
+        service.textSearch(request, callback);
+
+    }
+
+
+    function createMarker(input) {
+        position: fitler;
+        zoom: 15;
+    }
+
+
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                var place = results[i];
+                // console.log(results[i])
+                //   createMarker(results[i]);
+            }
+        }
+    }
+
+
+    initialize();
+</script>
+
+</html>
