@@ -3,16 +3,66 @@
 <head>
 
 <style>
-  #map, #map-holder {
-    height: 100%;
-  }
   /* Optional: Makes the sample page fill the window. */
   html, body {
       height: 400px;
       width: 400px;
       margin: 0;
-      padding: 0;
+      padding: 50px;
   }
+
+  #library-tab, #bookstore-tab {
+    display: inline-block;
+    width: 49%;
+    /* border: 1px black solid; */
+    margin: auto 0px;
+    padding: auto 0px;
+    height: 2em;
+    text-align: center;   
+    border-bottom: 1px black solid;
+    font-weight: normal; 
+    box-shadow: none;
+  }
+
+  #map, #map-holder {
+      height: 100%;
+      
+  }
+
+#map-holder {
+  border: 1px back double;
+  padding: 20px;
+}
+
+  #map{
+    border: 1px black solid;
+    border-top: none;
+  }
+  
+  #store-btn, #library-btn {
+    padding: auto 0;
+    margin: auto 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 1.2em;
+    box-shadow: none;
+  
+  }
+
+  .active-tab {
+    border: 1px black solid;
+    border-bottom:none !important;
+    font-weight: bold !important;
+    background-color: transparent;
+  }
+
+  .inactive-tab {
+    border: none;
+    border-bottom: 1px black solid;
+    font-weight: normal;
+  }
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
@@ -90,6 +140,7 @@ function makeHoursHTML(anArray) {
   return returnHTML;
 }
 
+// handle clicks on markers
 google.maps.event.addListener(marker, 'click', function() {
   var request = {placeId: place.place_id};
 
@@ -110,12 +161,11 @@ google.maps.event.addListener(marker, 'click', function() {
 </head>
 <body>
 
-<div id="map-holder">
-  <form>
-    <input type="radio" name="storeOrLibrary" value="library">Library
-    <input type="radio" name="storeOrLibrary" value="bookstore">Book Store
-  </form>
-  <div id="map"></div>
+<div id="map-holder"><div id="library-tab" class="active-tab" >
+      <input type="button" id="store-btn" class="active-tab" name="store-btn" value="Libraries">
+    </div><div id="bookstore-tab">
+      <input type="button" id="library-btn" name="library-btn" value="Bookstores">
+    </div><div id="map"></div>
 </div>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTrLjTdz7FcMXK268u0JLkR_KybHh8GJk&callback=initMap&libraries=places,visualization"></script>
@@ -123,4 +173,3 @@ google.maps.event.addListener(marker, 'click', function() {
 
 
 </body>
-</html>
