@@ -23,6 +23,7 @@
 
  #map { 
    height: auto; 
+<<<<<<< HEAD
    width: inherit; 
    height: 400px; 
    border: 1px black solid; 
@@ -32,27 +33,49 @@
   #map-holder {
     /* border: 1px black double; */
     /* padding: 20px; */
+=======
+   width: 400px; 
+   height: 400px; 
+   border: 1px black solid; 
+   border-top: none; }
+
+  #map-holder {
+    border: 1px back double;
+    padding: 20px;
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
     width: 400px;
   }
 
   #library-tab, #bookstore-tab {
     display: inline-block;
+<<<<<<< HEAD
     width: 50%;
+=======
+    width: 196px;
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
     /* border: 1px black solid; */
     border: none;
     margin: auto 0px;
     padding: auto 1px;
     height: 2em;
     text-align: center;
+<<<<<<< HEAD
+=======
+    border-bottom: 1px black solid;
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
     font-weight: normal;
     box-shadow: none;
   }
 
+<<<<<<< HEAD
   #bookstore-tab {
     float:right;
   }
 
 
+=======
+
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
   #store-btn, #library-btn {
     display: inline-block;
     padding: auto 0;
@@ -62,17 +85,24 @@
     border: none;
     font-size: 1.2em;
     box-shadow: none;
+<<<<<<< HEAD
     background-color: white;
   }
 
   #store-btn {
     float: right
+=======
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
   }
 
   .active-tab {
     /* border: 1px black solid !important; */
     /* border-bottom:none !important; */
     font-weight: bold !important;
+<<<<<<< HEAD
+=======
+    /* background-color: transparent; */
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
   }
 
   .inactive-tab {
@@ -198,11 +228,17 @@ google.maps.event.addListener(marker, 'click', function() {
 
 
 <div id="map-holder">
+<<<<<<< HEAD
   <div id="library-tab" class="active-tab">
     <input type="button" id="library-btn" class="active-btn" name="library-btn" value="Libraries">
   </div>
   <div id="bookstore-tab">
     <input type="button" id="store-btn" name="store-btn" value="Bookstores">
+=======
+  <div id="library-tab" class="active-tab"><input type="button" id="library-btn" class="active-tab" name="library-btn" value="Libraries">
+  </div>
+  <div id="bookstore-tab"><input type="button" id="store-btn" name="store-btn" value="Bookstores">
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
   </div>
   <div id="map"></div>
 </div>
@@ -212,6 +248,7 @@ google.maps.event.addListener(marker, 'click', function() {
 <script>
 $("#store-btn").on("click", function() {
   $("#store-tab").addClass("active-tab");
+<<<<<<< HEAD
   $("#store-btn").addClass("active-btn");
   $("#store-tab").removeClass("inactive-tab");
   $("#store-btn").removeClass("inactive-btn");
@@ -223,11 +260,21 @@ $("#store-btn").on("click", function() {
     curMap = 'book store'
     initMap() 
   }
+=======
+  $("#store-btn").addClass("active-tab");
+  $("#store-tab").removeClass("inactive-tab");
+  $("#store-btn").removeClass("inactive-tab");
+  $("#library-tab").addClass("inactive-tab");
+  $("#library-btn").addClass("inactive-tab");
+  $("#library-tab").removeClass("active-tab");
+  $("#library-btn").removeClass("active-tab");
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
   console.log("clicked store button")
 })
 
 $("#library-btn").on("click", function() {
   $("#library-tab").addClass("active-tab");
+<<<<<<< HEAD
   $("#library-btn").addClass("active-btn");
   $("#library-tab").removeClass("inactive-tab");
   $("#library-btn").removeClass("inactive-btn");
@@ -239,6 +286,15 @@ $("#library-btn").on("click", function() {
     curMap = 'library'
     initMap() 
   }
+=======
+  $("#library-btn").addClass("active-tab");
+  $("#library-tab").removeClass("inactive-tab");
+  $("#library-btn").removeClass("inactive-tab");
+  $("#store-tab").addClass("inactive-tab");
+  $("#store-btn").addClass("inactive-tab");
+  $("#store-tab").removeClass("active-tab");
+  $("#store-btn").removeClass("active-tab");
+>>>>>>> 8c1130e60606e96e0bec793c99a5364d45f6fee2
   console.log("clicked library button")
 })
 
