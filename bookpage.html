@@ -1,0 +1,341 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Books List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.core.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+
+</head>
+
+<body>
+
+    <div class="row">
+            <div id="book-box">
+                    <div class="col-md-4"></div>
+                <h3>Children's Books</h3>
+            </div>
+    </div>
+
+    <div id="youngadult-books">
+    <h3>Young Adult Books</h3>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var lccnResults = [];
+
+            var lccnChildren = ['2005002160', '90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397'];
+            var YA = ['2014021346', '2016950333', '2010277664', '2016058582', '2015026310', '2017297201', '2013013810', '2017019240', '2005005540', '2016003280', '2009009293', '2017000922', '2011378944', '2011036317', '2017943585', '2017021616', '2017945039']
+            function fetchWithLCCN(lccnList, bookDiv) {
+
+            
+            for (var i = 0; i < lccnList.length; i++) {
+                var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyCNFvVny7HNd4W8l9lSIslGEh6-a0P6mck";
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    if (response.totalItems > 0) {
+                        var book = response.items[0];
+                        console.log(book);
+                        var div = $('<div>');
+                        div.addClass("col-md-4");
+                        div.append(book.volumeInfo.title); 
+                        var author = $("<div>")
+                        author.text(book.volumeInfo.authors);
+                        div.append(author);
+                        // var description = $("<div>");
+                        // description.text(books.volumeInfo.description);
+                        // console.log(description)
+                        var image = $("<img>");
+                        image.attr("src", book.volumeInfo.imageLinks.thumbnail);
+                        div.append(image);
+                        $(bookDiv).append(div);
+                    }
+                    // var item = response.items;
+                    // lccnResults.push(item);
+                    // console.log(item);
+                    //console.log(item[i].volumeInfo.authors[0]);
+                    // var childrenBookList = $("<div>");
+                    // var photoDiv = $("<img>");
+                    // photoDiv.attr("src", item.imageLinks);
+                    // (childrenBookList).append(photoDiv);
+                    // $("#book-box").append(childrenBookList);
+                    // console.log(lccnResults);             
+
+                });
+            }
+            }
+        fetchWithLCCN(lccnChildren, "#book-box");
+        fetchWithLCCN(YA, "#youngadult-books");
+
+        });
+            // var lccnChildren = ['2005002160', '90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397'];
+            // var ajaxRequests = lccnChildren.map(function (lccn) {
+            //     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccn + "&key=AIzaSyBEd3FJa5kNMhvL2CUQrltQmvo1aKUWlcA";
+            //     return $.ajax({
+            //         url: queryURL,
+            //         method: "GET"
+            //     });
+            // });
+
+            // $.when.apply($, ajaxRequests).then(function (results, results1) {
+            //     console.log(results);
+            //     console.log(results1);
+            // });
+       
+
+
+// function start() {
+//   // 2. Initialize the JavaScript client library.
+//   var lccnChildren = ['2005002160','90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501','2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397'];
+//   gapi.client.init({
+//     'apiKey': 'YOUR_API_KEY',
+//   }).then(function() {
+//     // 3. Initialize and make the API request.
+//     return gapi.client.request({
+//       'path': "https://www.googleapis.com/books/v1/volumes?q=" + 2005002160,
+//     })
+//   }).then(function(response) {
+//     console.log(response.items);
+//   }, function(reason) {
+//     console.log('Error: ' + reason.result.error.message);
+//   });
+// };
+// // 1. Load the JavaScript client library.
+// gapi.load('client', start);
+    </script>
+
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Books List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Nanum+Pen+Script" rel="stylesheet">
+    <!-- <link type="text/css" rel="stylesheet" href="CSS/groundwork.css"> -->
+
+     <style>
+        body {
+        margin-left: 10px;
+        } 
+    
+        h2 {
+            margin-left: 25px;
+            font-family: 'Love Ya Like A Sister', cursive;
+        }
+
+        p {
+            font-family: 'Nanum Pen Script', cursive;
+            font-size: 24px;
+        }
+
+        #book-box, #youngadult-books {
+            margin-left: 15px;
+            
+        }
+
+        button, a, p {
+            float: left;
+            clear: both;
+            display: inline;
+        }
+    
+    </style> 
+
+</head>
+
+<body>
+
+
+        <header class="padded">
+                <div class="container">
+                  <div class="row">
+                    <div class="one half">
+                      <h2 class="logo">
+                        <a href="index.html" target="_parent"><img src="assets/images/div.jpg"   alt="Books for Everyone!!">Books for Everyone!!</a></h2>
+                    </div>
+                    <!-- <div class="one half">
+                    </div> -->
+                  </div>
+                  <nav role="navigation" class="nav">
+                    <ul role="menubar">
+                      <li>
+                        <a href="index.html">
+                          <i class="icon-home"></i> Home</a>
+                      </li>
+                      <li>
+                          <a href="bookpage.html">Books We Like</a>
+                        </li>
+                        <li>
+                          <a href="wishlist.html">You!</a>
+                        </li>
+                        <li>
+                          <a href="community.html">Community</a>
+                        </li>
+                        <li style="float:right">
+                            <a href="login.html"><i class="icon-user icon-1x"></i> Join Us or Sign In!</a>
+                        </li>
+                  </nav>
+                </div>
+              </header>
+
+  
+
+     <div class="row"> 
+            <h2>Children's Books</h3>
+            <div id="book-box"></div>
+    </div>
+            
+<!-- 
+    <div class="row"> 
+            <h2>Children's Books</h3>
+                 <div class="col-md-6">
+                         <div id="book-box"></div>
+                 </div>
+         </div> -->
+       <div class="row"> 
+            <h2>Young Adult Books</h3>
+            <div id="youngadult-books"></div>
+        </div>
+        
+        <!-- <div class="row">
+                <div id="book-box">
+                        <div class="col-md-4"></div>
+                    <h3>Children's Books</h3>
+                </div>
+        </div> -->
+    
+        <footer class="gap-top bounceInUp animated">
+                <div class="box square charcoal">
+                  <div class="container padded">
+                    <div class="row">
+                      <div class="one small-tablet fourth padded">
+            
+            
+                      </div>
+                      <div class="three small-tablet fourths padded">
+            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="box square">
+                  <div class="container padded">
+                    <div class="row">
+                      <div class="one half padded">
+                      </div>
+                      <div class="one half padded">
+                        <p class="large padded align-right align-center-small-tablet">
+                          <!-- <a href="http://twitter.com/groundworkcss" target="_blank" title="@groundworkcss" style="text-decoration:none;"
+                            class="large inline gapped"></a>
+                          <a href="http://github.com/groundworkcss" target="_blank" title="@groundworkcss" style="text-decoration:none;"
+                            class="large inline gapped"></a>
+                          <a href="mailto:groundworkcss@gmail.com" title="groundworkcss@gmail.com" style="text-decoration:none;"
+                            class="large inline gapped"></a> -->
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var lccnChildren = ['2005002160', '90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397', '2017036933'];
+            var YA = ['2014021346', '2016950333', '2016058582', '2015026310', '2017297201', '2013013810', '2009009293', '2011378944', '2011036317', '2017021616', '2017943585', '2017288346', '2017018004', '2016023127', '2016001079', '98040958', '2010007855', '2016022723'];
+            function fetchWithLCCN(lccnList, bookDiv) {
+
+
+                for (var i = 0; i < lccnList.length; i++) {
+                    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyBamc9-YYOwndh6rP8mMu0_XRaHE2URiU8";
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    }).then(function (response) {
+                        if (response.totalItems > 0) {
+                            var book = response.items[0];
+                            var div = $('<div>');
+                            div.addClass("col-md-6");
+                            var title = $("<p>");
+                            // title.attr("book-name");
+                            title.addClass("book-style font-style")
+                            title.append(book.volumeInfo.title);
+                            div.append(title);
+                            var author = $("<p>")
+                            author.text(book.volumeInfo.authors);
+                            author.addClass("book-style font-style");
+                            div.append(author);
+                            var links = $("<a target='_blank'>");
+                            //append attribute with link
+                            // links.attr("src", book.volumeInfo.infoLink);
+                            links.attr("href", book.volumeInfo.infoLink);
+                            // links.text(book.volumeInfo.infoLink);
+                            links.text("Click here to get more information");
+                            div.append(links);
+                            var image = $("<img>");
+                            image.attr("src", book.volumeInfo.imageLinks.thumbnail);
+                            div.append(image);
+                            var button = $("<button>");
+                            button.text("Add to Wish List");
+                            button.attr("data-book", book.volumeInfo.title);
+                            button.addClass("book-style");
+                            button.addClass("button-style");
+                            div.append(button);
+                            $(bookDiv).append(div);
+                        }
+                    });
+                }
+            }
+
+            //create an on click function, get value from the button attribute, and assign button value to wish list
+        $(document).on("click", ".book-style", function(){
+            var buttonInfo = $(this).attr("data-book");
+            console.log(buttonInfo);
+
+        })
+
+
+            //     function renderButton(lccnChildren) {
+            //         for (var i=0; i<lccnChildren.length;i++){
+            //         var buttons = $("<button>");
+            //         buttons.addClass("city-buttons");
+            //         buttons.attr("book-name", cities[i]);
+            //          buttons.html(cities[i]);
+            //         $("#cities-buttons").append(buttons);
+            // }
+            //     }
+
+            fetchWithLCCN(lccnChildren, "#book-box");
+            fetchWithLCCN(YA, "#youngadult-books");
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
