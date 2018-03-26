@@ -6,7 +6,7 @@ var lccnResults = [];
 
 
   for (var i = 0; i < lccnList.length; i++) {
-      var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyBEd3FJa5kNMhvL2CUQrltQmvo1aKUWlcA";
+    //   var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyBEd3FJa5kNMhvL2CUQrltQmvo1aKUWlcA";
       $.ajax({
           url: queryURL,
           method: "GET"
