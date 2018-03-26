@@ -75,6 +75,8 @@
     color: #CCCCCC;
     outline: none;
     box-shadow: none;
+    border-bottom-left-radius: none !important;
+    border-bottom-right-radius: none !important;
     /* outline: none; */
 }
 
