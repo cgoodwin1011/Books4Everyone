@@ -1,24 +1,46 @@
+var config = {
+    apiKey: "AIzaSyAToT_g5DSTX9cS96xiW7RVkbejO-25hds",
+    authDomain: "community-5e724.firebaseapp.com",
+    databaseURL: "https://community-5e724.firebaseio.com",
+    projectId: "community-5e724",
+    storageBucket: "",
+    messagingSenderId: "937972840063"
+  };
+  firebase.initializeApp(config);
 
-    var Children = [
-        '2005002160','90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', 
-        '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', 
-        '97062397']
-    
-        var YA = [ '2014021346', '2016950333', '2010277664', '2016058582', '2015026310', '2017297201', '2013013810',
-        '2017019240', '2005005540', '2016003280', '2009009293', '2017000922', '2011378944', '2011036317', 
-        '2017943585', '2017021616', '2017945039']
-    
-          google.books.load();
-    
-          function initialize() {
-            var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-    
-            Children.forEach(function(number) {
-                viewer.load('LCCN:' + number);
-            });
-    
-            
-          }
-    
-          google.books.setOnLoadCallback(initialize);
-        
+  var database = firebase.database();
+
+//write an event that listens to the submit button
+document.getElementById("submit1").addEventListener("click",function(event){
+    event.preventDefault(); //preventDefault prevents the page from restarting
+//inside this event, we're going to grab the values from the form that the submit button was connected to
+    var Email1 = document.getElementById("Email1").value;
+    var BookTitle1 = document.getElementById("BookTitle1").value;
+    var Author1 = document.getElementById("Author1").value;
+    var Neighborhood1 = document.getElementById("Neighborhood1").value;
+    var Comments1 = document.getElementById("Comments1").value;
+    console.log(Email1);
+    console.log(BookTitle1);
+    console.log(Author1);
+    console.log(Neighborhood1);
+    console.log(Comments1);
+    //take those values and push them to firebase database
+    database.ref("/want-books").push({
+        Email1: Email1,
+        BookTitle1: BookTitle1,
+        Author1: Author1,
+        Neighborhood1: Neighborhood1,
+        Comments1: Comments1
+    })
+})
+
+document.getElementById("View1").addEventListener("click",function(event){
+console.log("This works")
+location.href="display1.html";
+})
+
+
+
+
+
+
