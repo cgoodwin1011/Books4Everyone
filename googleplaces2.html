@@ -1,15 +1,20 @@
  <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 7]>   <html class="no-js ie ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 8]>   <html class="no-js ie ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 9]>   <html class="no-js ie ie9 lt-ie10"><![endif]-->
+<!--[if gt IE 9]><html class="no-js ie ie10"><![endif]-->
+<!--[if !IE]><!-->
+  <html class="no-js">
+      <!--<![endif]-->
 
 <head>
   <title>User Info</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- reset browser styles -->
-  <!-- <link rel="assets/stylesheet" type="text/css" media="screen" href="styles/reset.css" /> -->
-  <link rel="stylesheet" type="text/css" media="screen" href="CSS/googleplaces2.css" />
-
 
   <!-- bootstrap links -->
+
   <!-- Latest compiled and minified CSS -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
   <!-- Optional theme -->
@@ -18,199 +23,107 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
-  
+
   <!-- Modernizr -->
   <script src="js/libs/modernizr-2.6.2.min.js"></script>
   <!-- jQuery-->
-  <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
+  <!-- <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <!--FireBase-->
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-  
-  <script>
-    var map;
-    var infoWindow;
-    var service;
-    var curLocation = {
-      lat: 39.9520323,
-      lng: -75.1641467
-    };
-    var curMap = 'library'
-    var markersList = [];
 
-    function whereAmI() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          map.setCenter(pos);
-          curLocation = pos;
-          // console.log(pos)
-        }, function () {
-          handleLocationError(true);
-        });
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false);
-      }
+  <script type="text/javascript" src="js/googleplaces2.js"></script>
+
+
+  <!-- reset browser styles -->
+  <link rel="assets/stylesheet" type="text/css" media="screen" href="CSS/reset.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="CSS/googleplaces2.css" />
+  <style type="text/css">
+    .logo {
+      position: relative;
+      top: -0.5em;
     }
 
-    function handleLocationError(browserHasGeolocation) {
-      var msg = (browserHasGeolocation ? 
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-      console.log(msg)
+    .logo a,
+    .logo a:visited {
+      text-decoration: none;
+      color: #2B2B2D;
     }
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: curLocation,
-        zoom: 14,
-        styles: [{
-          stylers: [{
-            visibility: 'simplified'
-          }]
-        }, {
-          elementType: 'labels',
-          stylers: [{
-            visibility: 'off'
-          }]
-        }],
-        mapTypeControl: false
+    .logo img {
+      height: 2em;
+      position: relative;
+      top: 0.55em;
+      margin-right: 0.3em;
+    }
+  </style>
+<!-- <script type="text/javascript">
+  (function () {
+
+    $(document).ready(function () {
+      $('pre[data-lang="html"]').snippet("html", {
+        style: "groundwork",
+        clipboard: "../js/demo/ZeroClipboard.swf"
       });
-
-      infoWindow = new google.maps.InfoWindow();
-      service = new google.maps.places.PlacesService(map);
-
-      // The idle event is a debounced event, so we can query & listen without
-      // throwing too many requests at the server.
-      map.addListener('idle', performSearch);
-      map.addListener('bounds_changed', boundsChanged)
-    }
-
-    function boundsChanged() {
-      console.log("bounds changed.")
-      console.log("new center "+map.getCenter())
-      console.log("cur location is "+curLocation)
-      curLocation = map.getCenter();
-      console.log("updated cur location is "+curLocation)
-    }
-
-    function performSearch() {
-      var request = {
-        bounds: map.getBounds(),
-        keyword: curMap
-      };
-      // var request = {location: curLocation,radius: 1000,keyword: 'book store'};
-      service.nearbySearch(request, callback);
-    }
-
-    function callback(results, status) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        console.error(status);
-        return;
-      }
-      for (var i = 0, result; result = results[i]; i++) {
-        // console.log(result);
-        addMarker(result);
-      }
-    }
-
-      function makeHoursHTML(anArray) {
-        var returnHTML = '';
-        var weekday = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
-        for (i = 0; i < anArray.length; i++) {
-          var day = weekday[i];
-          var opensAt = moment(anArray[i].open.time, "HHmm").format("hh:mm a");
-          var closesAt = moment(anArray[i].close.time).format("hh:mm a");
-          returnHTML += day + ": " + opensAt + " to " + closesAt + "<br>";
-        }
-        return returnHTML;
-      }
-
-
-    function addMarker(place) {
-      var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-        icon: {
-          url: 'https://developers.google.com/maps/documentation/javascript/images/circle.png',
-          anchor: new google.maps.Point(10, 10),
-          scaledSize: new google.maps.Size(10, 17)
-        }
+      $('pre[data-lang="css"]').snippet("css", {
+        style: "groundwork",
+        clipboard: "../js/demo/ZeroClipboard.swf"
       });
-      markersList.push(marker)
-
-      // handle clicks on markers
-      google.maps.event.addListener(marker, 'click', function () {
-        var request = {
-          placeId: place.place_id
-        };
-
-        service.getDetails(request, function (result, status) {
-          if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            console.error(status);
-            return;
-          }
-          
-          try {
-            var theHours = makeHoursHTML(result.opening_hours.periods);
-          } catch (error) {
-            console.log(error);
-            var theHours = '';
-          }
-          try {
-            var telNo = result.formatted_phone_number;
-          } catch (error) {
-            console.log(error);
-            var telNo = '';
-          }
-
-          var bubbleHTML = "<b>"+result.name + "</b><br>" + result.website + "<br>" + result.formatted_address + "<br>" + telNo + "<br>" + theHours;
-          infoWindow.setContent(bubbleHTML);
-          infoWindow.open(map, marker);
-        });
+      $('pre[data-lang="sass"]').snippet("sass", {
+        style: "groundwork",
+        clipboard: "../js/demo/ZeroClipboard.swf"
       });
-    }
+      return $('pre[data-lang="js"]').snippet("javascript", {
+        style: "groundwork",
+        clipboard: "../js/demo/ZeroClipboard.swf"
+      });
+    });
 
-    function listPlaces() {
-      console.log("in ListPlaces")
-      console.log(markersList)
-      for (i=0; i<markersList.length; i++) {
-        
-        console.log(i, markersList[i]);
-      }
-    }
-  </script>
+  }).call(this);
+</script> -->
+
+
 </head>
 
 <body>
-  <header class="padded">
-      <div class="container">
-        <div class="row">
-          <div class="one half">
-            <h2 class="logo"><a href="/" target="_parent"><img src="images/books logo.jpg" alt="Books for Everyone!!">Books for Everyone!!</a></h2>
+
+    <header class="padded">
+        <div class="container">
+          <div class="row">
+            <div class="one half">
+              <h2 class="logo">
+                <a href="/" target="_parent">
+                  <img src="images/books logo.jpg" alt="Books for Everyone!!">Books for Everyone!!</a>
+              </h2>
+            </div>
+            <div class="one half">
+            </div>
           </div>
-          <div class="one half">
-          </div>
+          <nav role="navigation" class="nav gap-top">
+            <ul role="menubar">
+              <li>
+                <a href="./home.html">
+                  <i class="icon-home"></i> Home</a>
+              </li>
+              <li role="menu">
+                <button>Community</button>
+                <ul>
+                  <li>
+                    <a href="bookpage.html">BookList Page</a>
+                  </li>
+                  <li>
+                    <a href="wishlist.html">WishList Page</a>
+                  </li>
+                  <li>
+                    <a href="community.html">Community Page</a>
+                  </li>
+                </ul>
+              </li>
+
+
+          </nav>
         </div>
-        <nav role="navigation" class="nav gap-top">
-          <ul role="menubar">
-            <li><a href="./home.html"><i class="icon-home"></i> Home</a></li>
-            <li role="menu">
-              <button>Community</button>
-              <ul>
-                <li><a href="bookpage.html">BookList Page</a></li>
-                <li><a href="wishlist.html">WishList Page</a></li>
-                <li><a href="community.html">Community Page</a></li>
-              </ul>
-            </li>
-            
-              
-        </nav>
-      </div>
-    </header>
+      </header>
 
 
   <div id="map-holder" class="map-size-m">
@@ -229,6 +142,9 @@
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTrLjTdz7FcMXK268u0JLkR_KybHh8GJk&callback=initMap&libraries=places,visualization"></script>
 
+
+  <!-- javascript-->
+  <script type="text/javascript" src="js/groundwork.all.js"></script>
   <script>
     whereAmI();
     initMap();
@@ -303,7 +219,7 @@
     $("#map-holder").removeClass("map-size-m");
     $("#map-holder").removeClass("map-size-l");
     // $("#map-holder").removeClass("map-size-xl");
-  }); 
+  });
 
 
   $("#btn-size-s").removeClass("btn-size-active");
