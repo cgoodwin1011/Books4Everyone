@@ -57,44 +57,35 @@
       position: relative;
       top: -0.5em;
     }
-
     .logo a,
     .logo a:visited {
       text-decoration: none;
       color: #2B2B2D;
     }
-
     .logo img {
       height: 2em;
       position: relative;
       top: 0.55em;
       margin-right: 0.3em;
     }
-
     body {
       margin-left: 10px;
     }
-
     h2 {
       margin-left: 25px;
       font-family: 'Love Ya Like A Sister', cursive;
     }
-
     p {
       font-family: 'Nanum Pen Script', cursive;
       font-size: 24px;
     }
-
     #book-box,
     #youngadult-books {
       margin-left: 15px;
-
     }
-
     .classWrap {
             min-height: 250px;
     }
-
     /* button,
     a,
     p {
@@ -185,7 +176,6 @@
         </p>
       </div>
         <!-- <div class="one fifths align-right-ipad align-right-desktop flipInX animated">
-
           <p>
             <a href="layout-b.html" rel="prev" class="blue button">Back</a>
             <a href="layout-d.html" rel="next" class="green button">Next: Community Page</a>
@@ -245,14 +235,10 @@
 
   <!-- javascript-->
   <script type="text/javascript">
-
     $(document).ready(function () {
-
         var lccnChildren = ['2005002160', '90040410', '98022578', '93016788', '2006001947', '2006009487', '2014019913', '2005013501', '2011002879', '2016952958', '2017006468', '90021459', '00039103', '2013049031', '2014005767', '2013033662', '97062397', '2017036933'];
         var YA = ['2014021346', '2016950333', '2016058582', '2015026310', '2017297201', '2013013810', '2009009293', '2011378944', '2011036317', '2017021616', '2017943585', '2017288346', '2017018004', '2016023127', '2016001079', '98040958', '2010007855', '2016022723'];
         function fetchWithLCCN(lccnList, bookDiv) {
-
-
            for (var i = 0; i < lccnList.length; i++) {
                 var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyCNFvVny7HNd4W8l9lSIslGEh6-a0P6mck";
                 $.ajax({
@@ -300,15 +286,11 @@
                 });
             }
         }
-
         //create an on click function, get value from the button attribute, and assign button value to wish list
     $(document).on("click", ".book-style", function(){
         var buttonInfo = $(this).attr("data-book");
         console.log(buttonInfo);
-
     })
-
-
         //     function renderButton(lccnChildren) {
         //         for (var i=0; i<lccnChildren.length;i++){
         //         var buttons = $("<button>");
@@ -318,12 +300,9 @@
         //         $("#cities-buttons").append(buttons);
         // }
         //     }
-
         fetchWithLCCN(lccnChildren, "#book-box");
         fetchWithLCCN(YA, "#youngadult-books");
-
     });
-
 </script>
 
 
