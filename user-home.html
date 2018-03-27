@@ -33,7 +33,7 @@
   <!--
   <link type="text/css" rel="stylesheet" href="CSS/YOURFILE.css">
   -->
-  <link rel="stylesheet" type="text/css" media="screen" href="CSS/googleplaces2.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="CSS/user-home.css" />
 
   <style type="text/css">
     .logo {
@@ -76,39 +76,39 @@
   <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
   <!--FireBase-->
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js">
 
 
   <!-- snippet (syntax highlighting for code examples)-->
   <script type="text/javascript" src="js/demo/jquery.snippet.min.js"></script>
 
   <script type="text/javascript">
-    (function () {
-      $(document).ready(function () {
-        $('pre[data-lang="html"]').snippet("html", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-        $('pre[data-lang="css"]').snippet("css", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-        $('pre[data-lang="sass"]').snippet("sass", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-        return $('pre[data-lang="js"]').snippet("javascript", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-      });
-    }).call(this);
+    // (function () {
+    //   $(document).ready(function () {
+    //     $('pre[data-lang="html"]').snippet("html", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //     $('pre[data-lang="css"]').snippet("cs", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //     $('pre[data-lang="sass"]').snippet("sass", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //     return $('pre[data-lang="js"]').snippet("javascript", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //   });
+    // }).call(this);
   </script>
 <!--
   link to your js files here!  E.g., main page should link to this (which is very buggy at this time!)
   <script type="text/javascript" src="js/googleBooks.js"></script>
 -->
-  <script type="text/javascript" src="js/googleplaces2.js"></script>
+  <script type="text/javascript" src="js/user-home.js"></script>
 
 </head>
 
@@ -167,7 +167,7 @@
       <div id="left-side" class="half">
         <div class = "row">
             <h2 class="one half">Join or Login</h2>
-            <h2 class="one half">LOGIN PLACEHOLDER</h2>
+            <img class="one half" src="images/login mockup.png">
         </div>
         
         <form id="user-info">
@@ -184,8 +184,9 @@
           </div>
           <input id="usr-tel" type="text" placeholder="Telephone number">
           <input id="usr-more-about" type="textarea" placeholder="Tell us more about you">
-          <input id="user-stay-logged-in" type="checkbox" value="checked" Label="Keep Me Logged In"> Keep Me Logged In<br>
-          <input id="user-info-sbmt-btn" type="submit">
+          <input id="usr-stay-logged-in" type="checkbox" value="" Label="Keep Me Logged In"> Keep Me Logged In<br>
+          <br>
+          <input id="usr-info-sbmt-btn" type="submit">
         </form>
       </div>
       <div id="right-side" class="one half">
@@ -301,6 +302,30 @@
           this.usrMoreAbout = usrMoreAbout;
           this.usrStayLoggedIn = usrStayLoggedIn;
         }
+
+         $("#usr-info-sbmt-btn").on('click', function () {
+          event.preventDefault();$
+          if ($("#usr-stay-logged-in").is(":checked")) {
+            var usrStayLoggedIn = true;
+          } else {
+            var usrStayLoggedIn = false;
+          }
+          newUser = new usrProfile(
+            $("#usr-first-name").val(),
+            $("#usr-last-name").val(),
+            $("#usr-email").val(),
+            $("#usr-street").val(),
+            $("#usr-city").val(),
+            $("#usr-state").val(),
+            $("#usr-zip").val(),
+            $("#usr-tel").val(),
+            $("#usr-more-about").val(),
+            usrStayLoggedIn
+          )
+          console.log(newUser);
+
+        });
+
         </script>
       </div>
     </div>
@@ -345,7 +370,7 @@
   <!-- javascript-->
   <script type="text/javascript" src="js/groundwork.all.js"></script>
   <!-- google analytics-->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
     _gaq.push(['_trackPageview']);
@@ -358,7 +383,7 @@
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(ga, s);
     })();
-  </script>
+  </script> -->
 </body>
 
 </html>
