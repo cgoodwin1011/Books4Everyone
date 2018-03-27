@@ -33,10 +33,8 @@
             
         }
 
-        button, a, p {
-            float: left;
-            clear: both;
-            display: inline;
+         .classWrap {
+            min-height: 250px;
         }
     
     </style> 
@@ -135,8 +133,8 @@
             function fetchWithLCCN(lccnList, bookDiv) {
 
 
-                for (var i = 0; i < lccnList.length; i++) {
-                    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyBamc9-YYOwndh6rP8mMu0_XRaHE2URiU8";
+               for (var i = 0; i < lccnList.length; i++) {
+                    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=lccn:" + lccnList[i] + "&key=AIzaSyAYuYVx1BENspx5u8tNldbNgyUneaKudkg";
                     $.ajax({
                         url: queryURL,
                         method: "GET"
@@ -144,32 +142,39 @@
                         if (response.totalItems > 0) {
                             var book = response.items[0];
                             var div = $('<div>');
-                            div.addClass("col-md-6");
+                            div.addClass("col-md-6 classWrap");
+                            var infoDiv = $("<div>");
+                            infoDiv.addClass("col-md-8");
                             var title = $("<p>");
                             // title.attr("book-name");
                             title.addClass("book-style font-style")
                             title.append(book.volumeInfo.title);
-                            div.append(title);
+                            infoDiv.append(title);
                             var author = $("<p>")
                             author.text(book.volumeInfo.authors);
                             author.addClass("book-style font-style");
-                            div.append(author);
+                            infoDiv.append(author);
                             var links = $("<a target='_blank'>");
                             //append attribute with link
                             // links.attr("src", book.volumeInfo.infoLink);
                             links.attr("href", book.volumeInfo.infoLink);
                             // links.text(book.volumeInfo.infoLink);
                             links.text("Click here to get more information");
-                            div.append(links);
+                            infoDiv.append(links);
+                            var imageDiv = $("<div>");
+                            imageDiv.addClass("col-md-4");
                             var image = $("<img>");
                             image.attr("src", book.volumeInfo.imageLinks.thumbnail);
-                            div.append(image);
+                            imageDiv.append(image);
+                            
                             var button = $("<button>");
                             button.text("Add to Wish List");
                             button.attr("data-book", book.volumeInfo.title);
                             button.addClass("book-style");
                             button.addClass("button-style");
-                            div.append(button);
+                            infoDiv.append(button);
+                            div.append(infoDiv);
+                            div.append(imageDiv);
                             $(bookDiv).append(div);
                         }
                     });
