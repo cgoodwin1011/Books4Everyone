@@ -17,19 +17,22 @@
     background-color: #EEE;
     color: #346fb1;
     padding: 0px 15px 0 15px;
+    font-weight: normal;
 }
 
 #btn-store,
 #btn-library {
     display: inline-block;
     padding: auto 0;
-    margin: auto 0;
-    width: 50%;
+    margin: auto 2px auto 0px;
+    width: 49% !important;
     /* height: 100%; */
     border: none;
     font-size: 1em;
     box-shadow: none;
     background-color: white;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0%;
 }
 
 #btn-store {
