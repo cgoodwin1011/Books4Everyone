@@ -10,13 +10,13 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-database.ref("/want-books").on("child_added", function (snap) {
+database.ref("suggest-books").on("child_added", function (snap) {
     var data = snap.val();
-    var Email1 = snap.val().Email1;
-    var BookTitle1 = snap.val().BookTitle1;
-    var Author1 = snap.val().Author1;
-    var Neighborhood1 = snap.val().Neighborhood1;
-    var Comments1 = snap.val().Comments1;
+    var Email3 = snap.val().Email3;
+    var BookTitle3 = snap.val().BookTitle3;
+    var Author3 = snap.val().Author3;
+    var Neighborhood3 = snap.val().Neighborhood3;
+    var Comments3 = snap.val().Comments3;
 
 
     var tr = document.createElement('tr');
@@ -32,11 +32,11 @@ database.ref("/want-books").on("child_added", function (snap) {
     td5.addClass("column5")
 
 
-    $(td1).append(Email1);
-    $(td2).append(BookTitle1);
-    $(td3).append(Author1);
-    $(td4).append(Neighborhood1);
-    $(td5).append(Comments1);
+    $(td1).append(Email3);
+    $(td2).append(BookTitle3);
+    $(td3).append(Author3);
+    $(td4).append(Neighborhood3);
+    $(td5).append(Comments3);
     $(tr).append(td1);
     $(tr).append(td2);
     $(tr).append(td3);
