@@ -13,7 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <title>Books for Everyone!!</title>
-  
+
   <!--  STYLES  -->
   <link type="text/css" rel="stylesheet" href="CSS/reset.css">
 
@@ -33,7 +33,7 @@
   <!--
   <link type="text/css" rel="stylesheet" href="CSS/YOURFILE.css">
   -->
-  <link rel="stylesheet" type="text/css" media="screen" href="CSS/googleplaces2.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="CSS/user-home.css" />
 
   <style type="text/css">
     .logo {
@@ -54,20 +54,21 @@
       margin-right: 0.3em;
     }
   </style>
-<style>
-  #left-side {
-    padding: 10px;
+  <style>
+    #left-side {
+      padding: 10px;
 
-  }
-  #right-side {
-    padding: 10px;
-    border-left: 1px #777777 dotted;
-  }
-  input {
-    margin: 2px 0 0 0;
-  }
+    }
 
-</style>
+    #right-side {
+      padding: 10px;
+      border-left: 1px #777777 dotted;
+    }
+
+    input {
+      margin: 2px 0 0 0;
+    }
+  </style>
 
   <!-- SCRIPTS & CODE ++++++++++++++++++++ -->
   <!-- Modernizr -->
@@ -76,39 +77,39 @@
   <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
   <!--FireBase-->
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js">
+    // snippet (syntax highlighting for code examples)
 
-
-
-  <!-- snippet (syntax highlighting for code examples)-->
-  <script type="text/javascript" src="js/demo/jquery.snippet.min.js"></script>
-
-  <script type="text/javascript">
-    (function () {
-      $(document).ready(function () {
-        $('pre[data-lang="html"]').snippet("html", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-        $('pre[data-lang="css"]').snippet("css", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-        $('pre[data-lang="sass"]').snippet("sass", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-        return $('pre[data-lang="js"]').snippet("javascript", {
-          style: "groundwork",
-          clipboard: "js/demo/ZeroClipboard.swf"
-        });
-      });
-    }).call(this);
+    // <script type="text/javascript">
+    // (function () {
+    //   $(document).ready(function () {
+    //     $('pre[data-lang="html"]').snippet("html", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //     $('pre[data-lang="css"]').snippet("cs", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //     $('pre[data-lang="sass"]').snippet("sass", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //     return $('pre[data-lang="js"]').snippet("javascript", {
+    //       style: "groundwork",
+    //       clipboard: "js/demo/ZeroClipboard.swf"
+    //     });
+    //   });
+    // }).call(this);
+    //
   </script>
-<!--
+  <!--
   link to your js files here!  E.g., main page should link to this (which is very buggy at this time!)
   <script type="text/javascript" src="js/googleBooks.js"></script>
 -->
-  <script type="text/javascript" src="js/googleplaces2.js"></script>
+  <script type="text/javascript" src="js/demo/jquery.snippet.min.js"></script>
+  <script type="text/javascript" src="js/user-home.js"></script>
+  <script type="text/javascript" src="js/register.js"></script>
 
 </head>
 
@@ -119,7 +120,9 @@
       <div class="row">
         <div class="one half">
           <h2 class="logo">
-            <a href="index.html" target="_parent"><img src="assets/images/div.jpg"   alt="Books for Everyone!!">Books for Everyone!!</a></h2>
+            <a href="index.html" target="_parent">
+              <img src="assets/images/div.jpg" alt="Books for Everyone!!">Books for Everyone!!</a>
+          </h2>
         </div>
         <!-- <div class="one half">
         </div> -->
@@ -131,17 +134,18 @@
               <i class="icon-home"></i> Home</a>
           </li>
           <li>
-              <a href="bookpage.html">Books We Like</a>
-            </li>
-            <li>
-              <a href="wishlist.html">You!</a>
-            </li>
-            <li>
-              <a href="community.html">Community</a>
-            </li>
-            <li style="float:right">
-                <a href="login.html"><i class="icon-user icon-1x"></i> Join Us or Sign In!</a>
-            </li>
+            <a href="bookpage.html">Books We Like</a>
+          </li>
+          <li>
+            <a href="wishlist.html">You!</a>
+          </li>
+          <li>
+            <a href="community.html">Community</a>
+          </li>
+          <li style="float:right">
+            <a href="login.html">
+              <i class="icon-user icon-1x"></i> Join Us or Sign In!</a>
+          </li>
       </nav>
     </div>
   </header>
@@ -149,8 +153,16 @@
     <div class="padded">
       <div class="row">
         <div class="three fifths bounceInRight animated">
-          <h1 class="zero museo-slab"><i class="icon-book icon-1x"></i> User Page</h1>
-          <p class="quicksand"><b>Welcome, Friend!  On this page you can...  <i class="icon-ok icon-1x"></i>Sign in with Google <i class="icon-google-plus-sign icon-1x"></i>     <i class="icon-ok icon-1x"></i>Complete or update you profile<i class=" icon-edit icon-1x"></i></b></p>
+          <h1 class="zero museo-slab">
+            <i class="icon-book icon-1x"></i> User Page</h1>
+          <p class="quicksand">
+            <b>Welcome, Friend! On this page you can...
+              <i class="icon-ok icon-1x"></i>Sign in with Google
+              <i class="icon-google-plus-sign icon-1x"></i>
+              <i class="icon-ok icon-1x"></i>Complete or update you profile
+              <i class=" icon-edit icon-1x"></i>
+            </b>
+          </p>
         </div>
         <div class="two fifths align-right-ipad align-right-desktop flipInX animated">
 
@@ -165,11 +177,14 @@
 
     <div class="row">
       <div id="left-side" class="half">
-        <div class = "row">
-            <h2 class="one half">Join or Login</h2>
-            <h2 class="one half">LOGIN PLACEHOLDER</h2>
+        <div class="row">
+          <h2 class="one half">Join or
+            <input id="btn-login" type="button" value="login">
+          </h2>
+
+          <!-- <img class="one half" src="images/login mockup.png"> -->
         </div>
-        
+
         <form id="user-info">
           <div class="row">
             <input id="usr-first-name" class="one half" type="text" placeholder="First Name">
@@ -184,8 +199,10 @@
           </div>
           <input id="usr-tel" type="text" placeholder="Telephone number">
           <input id="usr-more-about" type="textarea" placeholder="Tell us more about you">
-          <input id="user-stay-logged-in" type="checkbox" value="checked" Label="Keep Me Logged In"> Keep Me Logged In<br>
-          <input id="user-info-sbmt-btn" type="submit">
+          <input id="usr-stay-logged-in" type="checkbox" value="" Label="Keep Me Logged In"> Keep Me Logged In
+          <br>
+          <br>
+          <input id="usr-info-sbmt-btn" type="submit">
         </form>
       </div>
       <div id="right-side" class="one half">
@@ -196,100 +213,101 @@
           <input type="button" id="btn-library" class="btn-active" name="btn-library" value="Libraries">
           <input type="button" id="btn-store" name="btn-store" value="Bookstores">
           <div id="map"></div>
-          <div ="btn-size-holder">
+          <div="btn-size-holder">
             <!-- <span id="btn-size-label">Map Size:</span> -->
             <!-- <input type="button" id="btn-size-xs" class="btn-size" name="btn-size-xs" value="XS"> -->
             <input type="button" id="btn-size-s" class="btn-size" name="btn-size-s" value="S">
             <input type="button" id="btn-size-m" class="btn-size" name="btn-size-m" value="M">
             <input type="button" id="btn-size-l" class="btn-size" name="btn-size-l" value="L">
             <input type="button" id="btn-size-xl" class="btn-size" name="btn-size-xl" value="XL">
-          </div>
         </div>
-        <script>
-            whereAmI();
+      </div>
+      <script>
+        whereAmI()
+        initMap()
+        // listPlaces();
+
+        //display list of local stores on tab click
+        $("#btn-store").on("click", function () {
+          $("#btn-store").addClass("btn-active")
+          $("#btn-store").removeClass("btn-inactive")
+          $("#btn-library").addClass("btn-inactive")
+          $("#btn-library").removeClass("btn-active")
+          if (curMap != 'book store') {
+            curMap = 'book store';
             initMap();
-            // listPlaces();
+          }
+        })
 
-            //display list of local stores on tab click
-            $("#btn-store").on("click", function () {
-              $("#btn-store").addClass("btn-active");
-              $("#btn-store").removeClass("btn-inactive");
-              $("#btn-library").addClass("btn-inactive");
-              $("#btn-library").removeClass("btn-active");
-              if (curMap != 'book store') {
-                curMap = 'book store';
-                initMap();
-              }
-            })
+        //display list of local libraries on tab click
+        $("#btn-library").on("click", function () {
+          $("#btn-library").addClass("btn-active")
+          $("#btn-library").removeClass("btn-inactive")
+          $("#btn-store").addClass("btn-inactive")
+          $("#btn-store").removeClass("btn-active")
+          if (curMap != 'library') {
+            curMap = 'library';
+            initMap();
+          }
+        })
 
-            //display list of local libraries on tab click
-            $("#btn-library").on("click", function() {
-              $("#btn-library").addClass("btn-active");
-              $("#btn-library").removeClass("btn-inactive");
-              $("#btn-store").addClass("btn-inactive");
-              $("#btn-store").removeClass("btn-active");
-              if (curMap != 'library') {
-                curMap = 'library';
-                initMap();
-              }
-            })
+        // allows user to choose map-size
+        $("#btn-size-s").on("click", function () {
+          $("#btn-size-s").addClass("btn-size-active")
+          // $("#btn-size-s").removeClass("btn-size-active")
+          $("#btn-size-m").removeClass("btn-size-active")
+          $("#btn-size-l").removeClass("btn-size-active")
+          $("#btn-size-xl").removeClass("btn-size-active")
+          $("#map-holder").addClass("map-size-s")
+          // $("#map-holder").removeClass("map-size-s")
+          $("#map-holder").removeClass("map-size-m")
+          $("#map-holder").removeClass("map-size-l")
+          $("#map-holder").removeClass("map-size-xl")
+        });
+        $("#btn-size-m").on("click", function () {
+          $("#btn-size-m").addClass("btn-size-active");
+          $("#btn-size-s").removeClass("btn-size-active");
+          // $("#btn-size-m").removeClass("btn-size-active");
+          $("#btn-size-l").removeClass("btn-size-active");
+          $("#btn-size-xl").removeClass("btn-size-active");
+          $("#map-holder").addClass("map-size-m");
+          $("#map-holder").removeClass("map-size-s");
+          // $("#map-holder").removeClass("map-size-m");
+          $("#map-holder").removeClass("map-size-l");
+          $("#map-holder").removeClass("map-size-xl");
+        });
+        $("#btn-size-l").on("click", function () {
+          $("#btn-size-l").addClass("btn-size-active")
+          $("#btn-size-s").removeClass("btn-size-active")
+          $("#btn-size-m").removeClass("btn-size-active")
+          // $("#btn-size-l").removeClass("btn-size-active")
+          $("#btn-size-xl").removeClass("btn-size-active")
+          $("#map-holder").addClass("map-size-l")
+          $("#map-holder").removeClass("map-size-s")
+          $("#map-holder").removeClass("map-size-m")
+          // $("#map-holder").removeClass("map-size-l")
+          $("#map-holder").removeClass("map-size-xl")
+        });
+        $("#btn-size-xl").on("click", function () {
+          $("#btn-size-xl").addClass("btn-size-active")
+          $("#btn-size-s").removeClass("btn-size-active")
+          $("#btn-size-m").removeClass("btn-size-active")
+          $("#btn-size-l").removeClass("btn-size-active")
+          // $("#btn-size-xl").removeClass("btn-size-active");
+          $("#map-holder").addClass("map-size-xl")
+          $("#map-holder").removeClass("map-size-s")
+          $("#map-holder").removeClass("map-size-m")
+          $("#map-holder").removeClass("map-size-l")
+          // $("#map-holder").removeClass("map-size-xl");
+        });
+        // handle submission of new memnber form...
+        $("#user-info-sbmt-btn").on("click", function () {
+          event.preventDefault()
 
-          // allows user to choose map-size
-          $("#btn-size-s").on("click", function() {
-            $("#btn-size-s").addClass("btn-size-active");
-            // $("#btn-size-s").removeClass("btn-size-active");
-            $("#btn-size-m").removeClass("btn-size-active");
-            $("#btn-size-l").removeClass("btn-size-active");
-            $("#btn-size-xl").removeClass("btn-size-active");
-            $("#map-holder").addClass("map-size-s");
-            // $("#map-holder").removeClass("map-size-s");
-            $("#map-holder").removeClass("map-size-m");
-            $("#map-holder").removeClass("map-size-l");
-            $("#map-holder").removeClass("map-size-xl");
-          });
-          $("#btn-size-m").on("click", function() {
-            $("#btn-size-m").addClass("btn-size-active");
-            $("#btn-size-s").removeClass("btn-size-active");
-            // $("#btn-size-m").removeClass("btn-size-active");
-            $("#btn-size-l").removeClass("btn-size-active");
-            $("#btn-size-xl").removeClass("btn-size-active");
-            $("#map-holder").addClass("map-size-m");
-            $("#map-holder").removeClass("map-size-s");
-            // $("#map-holder").removeClass("map-size-m");
-            $("#map-holder").removeClass("map-size-l");
-            $("#map-holder").removeClass("map-size-xl");
-          });
-          $("#btn-size-l").on("click", function() {
-            $("#btn-size-l").addClass("btn-size-active");
-            $("#btn-size-s").removeClass("btn-size-active");
-            $("#btn-size-m").removeClass("btn-size-active");
-            // $("#btn-size-l").removeClass("btn-size-active");
-            $("#btn-size-xl").removeClass("btn-size-active");
-            $("#map-holder").addClass("map-size-l");
-            $("#map-holder").removeClass("map-size-s");
-            $("#map-holder").removeClass("map-size-m");
-            // $("#map-holder").removeClass("map-size-l");
-            $("#map-holder").removeClass("map-size-xl");
-          });
-          $("#btn-size-xl").on("click", function() {
-            $("#btn-size-xl").addClass("btn-size-active");
-            $("#btn-size-s").removeClass("btn-size-active");
-            $("#btn-size-m").removeClass("btn-size-active");
-            $("#btn-size-l").removeClass("btn-size-active");
-            // $("#btn-size-xl").removeClass("btn-size-active");
-            $("#map-holder").addClass("map-size-xl");
-            $("#map-holder").removeClass("map-size-s");
-            $("#map-holder").removeClass("map-size-m");
-            $("#map-holder").removeClass("map-size-l");
-            // $("#map-holder").removeClass("map-size-xl");
-          });
-          // handle submission of new memnber form...
-          $("#user-info-sbmt-btn").on("click", function() {
-            event.preventDefault();
+        })
 
-          })
-
-        function usrProfile(usrFirstName, usrLastName, usrEmail, usrStreet, usrCity, usrState, usrZip, usrTel, usrMoreAbout, usrStayLoggedIn) {
+        function usrProfile(usrFirstName, usrLastName, usrEmail, usrStreet, usrCity, usrState, usrZip, usrTel,
+          usrMoreAbout, usrStayLoggedIn) {
           this.usrFirstName = usrFirstName;
           this.usrLastName = usrLastName;
           this.usrEmail = usrEmail;
@@ -301,13 +319,38 @@
           this.usrMoreAbout = usrMoreAbout;
           this.usrStayLoggedIn = usrStayLoggedIn;
         }
-        </script>
-      </div>
+
+        $("#usr-info-sbmt-btn").on('click', function () {
+          event.preventDefault();
+          $
+          if ($("#usr-stay-logged-in").is(":checked")) {
+            var usrStayLoggedIn = true;
+          } else {
+            var usrStayLoggedIn = false;
+          }
+          newUser = new usrProfile(
+            $("#usr-first-name").val(),
+            $("#usr-last-name").val(),
+            $("#usr-email").val(),
+            $("#usr-street").val(),
+            $("#usr-city").val(),
+            $("#usr-state").val(),
+            $("#usr-zip").val(),
+            $("#usr-tel").val(),
+            $("#usr-more-about").val(),
+            usrStayLoggedIn
+          )
+          console.log(newUser);
+          addToFirebase(newUser)
+
+        });
+      </script>
     </div>
+  </div>
   </div>
 
 
-  <footer class = "gap-top bounceInUp animated">
+  <footer class="gap-top bounceInUp animated">
     <div class="box square charcoal">
       <div class="container padded">
         <div class="row">
@@ -345,7 +388,7 @@
   <!-- javascript-->
   <script type="text/javascript" src="js/groundwork.all.js"></script>
   <!-- google analytics-->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
     _gaq.push(['_trackPageview']);
@@ -358,7 +401,7 @@
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(ga, s);
     })();
-  </script>
+  </script> -->
 </body>
 
 </html>

@@ -5,17 +5,17 @@ var config = {
     projectId: "community-5e724",
     storageBucket: "",
     messagingSenderId: "937972840063"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
-  var database = firebase.database();
+var database = firebase.database();
 
 //write an event that listens to the submit button
 // document.getElementById("submit1").addEventListener("click",function(event){
-document.getElementById("submit1").addEventListener("click", function(event) {
+$("#submit1").on("click", function (event) {
 
     event.preventDefault(); //preventDefault prevents the page from restarting
-//inside this event, we're going to grab the values from the form that the submit button was connected to
+    //inside this event, we're going to grab the values from the form that the submit button was connected to
     var Email1 = document.getElementById("Email1").value;
     var BookTitle1 = document.getElementById("BookTitle1").value;
     var Author1 = document.getElementById("Author1").value;
@@ -36,13 +36,7 @@ document.getElementById("submit1").addEventListener("click", function(event) {
     })
 })
 
-document.getElementById("View1").addEventListener("click",function(event){
-console.log("This works")
-location.href="display1.html";
+$("#View1").on("click", function (event) {
+    console.log("This works")
+    location.href = "display1.html";
 })
-
-
-
-
-
-
