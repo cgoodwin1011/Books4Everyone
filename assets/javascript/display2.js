@@ -54,5 +54,5 @@ database.ref("/give-books").on("child_added", function (snap) {
 
 document.getElementById("BackCommunity").addEventListener("click", function () {
     console.log("this worked");
-    location.href = "community.html";
+    location.href = "communityMollusk.html";
 })
