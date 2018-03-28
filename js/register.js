@@ -44,15 +44,18 @@ document.getElementById("View1").addEventListener("click", function (event) {
 
 function addToFirebase(aNewUser) {
   database.ref("/registered-users").push({
-    $("#usr-first-name").val(),
-    $("#usr-last-name").val(),
-    $("#usr-email").val(),
-    $("#usr-street").val(),
-    $("#usr-city").val(),
-    $("#usr-state").val(),
-    $("#usr-zip").val(),
-    $("#usr-tel").val(),
-    $("#usr-more-about").val(),
-    usrStayLoggedIn
+    usrFirstName : aNewUser.usrFirstName,
+    usrLastName : aNewUser.usrLastName,
+    usrEmail : aNewUser.usrEmail,
+    usrStreet : aNewUser.usrStreet,
+    usrCity : aNewUser.usrCity,
+    usrState : aNewUser.usrState,
+    usrZip : aNewUser.usrZip,
+    usrTel : aNewUser.usrTel,
+    usrMoreAbout : aNewUser.usrMoreAbout,
+    usrStayLoggedIn : aNewUser.usrStayLoggedIn,
+    usrWishList : [],
+    usrGiveList : [], 
+    usrCmtList : [],
   });
 });
